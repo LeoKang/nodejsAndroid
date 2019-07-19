@@ -2,18 +2,9 @@ const express = require('express');
 const app = express();
 
 let users = [
-  {
-    id: 1,
-    pw: 'alice'
-  },
-  {
-    id: 2,
-    pw: 'bek'
-  },
-  {
-    id: 3,
-    pw: 'chris'
-  }
+  {    id: 1,    pw: 'alice'  },
+  {    id: 2,    pw: 'bek'  },
+  {    id: 3,    pw: 'chris'  }
 ]
 
 app.get('/users', (req, res) => {
@@ -30,10 +21,10 @@ app.post('/post', (req, res) => {
    });
 
    req.on('end', () => {
-     console.log("user_id : "+inputData.id + " , name : "+inputData.pw);
+     console.log("id : "+inputData.id + " , password : "+inputData.pw);
    });
 
-   res.write("OK!");
+   res.write("Connect success!");
    res.end();
 });
 

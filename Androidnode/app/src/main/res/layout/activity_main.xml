@@ -73,7 +73,9 @@
         <EditText
             android:id="@+id/etMsg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:enabled="false"/>
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
