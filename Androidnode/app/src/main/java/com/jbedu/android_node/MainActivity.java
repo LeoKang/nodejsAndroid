@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         btnConnect.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                etMsg.setText("");
                 strId = etID.getText().toString();
                 strPw = etPW.getText().toString();
                 Log.d("KSJ", "Button Clicked!");
