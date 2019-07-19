@@ -41,13 +41,13 @@ app.post('/post', (req, res) => {
        connection.execute(query, function(err, result) {
          if(err) {
            console.error(err.message);
-           msg = err;
+           msg = err.toString();
            return;
          }
          console.log(result.rows);
          console.log(result);
          console.log(result.rows[0]);
-         msg = result;
+         msg = result.rows[0].toString();
        });
      });
      // --- oracledb END ----------------------------
