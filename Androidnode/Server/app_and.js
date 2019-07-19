@@ -4,15 +4,15 @@ const app = express();
 let users = [
   {
     id: 1,
-    name: 'alice'
+    pw: 'alice'
   },
   {
     id: 2,
-    name: 'bek'
+    pw: 'bek'
   },
   {
     id: 3,
-    name: 'chris'
+    pw: 'chris'
   }
 ]
 
@@ -30,7 +30,7 @@ app.post('/post', (req, res) => {
    });
 
    req.on('end', () => {
-     console.log("user_id : "+inputData.user_id + " , name : "+inputData.name);
+     console.log("user_id : "+inputData.id + " , name : "+inputData.pw);
    });
 
    res.write("OK!");

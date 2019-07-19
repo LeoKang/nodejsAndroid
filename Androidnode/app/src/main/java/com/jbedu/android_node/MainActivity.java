@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     EditText etServerIP, etID, etPW, etMsg;
     String m_ip = "192.168.0.100";
     String m_port = "3000";
+    String strId, strPw;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +49,11 @@ public class MainActivity extends AppCompatActivity {
         btnConnect.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                strId = etID.getText().toString();
+                strPw = etPW.getText().toString();
                 Log.d("KSJ", "Button Clicked!");
-                Log.d("KSJ", "ID : " + etID.getText().toString());
-                Log.d("KSJ", "PW : " + etPW.getText().toString());
+                Log.d("KSJ", "ID : " + strId);
+                Log.d("KSJ", "PW : " + strPw);
                 new JSONTask().execute("http://" + m_ip + ":" + m_port + "/post");
             }
         });
@@ -61,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(String... urls) {
             try{
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.accumulate("user_id", "jbedu");
-                jsonObject.accumulate("name", "kang");
+                jsonObject.accumulate("id", strId);
+                jsonObject.accumulate("pw", strPw);
 
                 HttpURLConnection con = null;
                 BufferedReader reader = null;
