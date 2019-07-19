@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import org.json.JSONException;
@@ -25,7 +26,8 @@ import java.net.ProtocolException;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
-    TextView tvData;
+    TextView tvServerIP;
+    EditText etServerIP, etID, etPW, etMsg;
     String m_ip = "192.168.0.100";
     String m_port = "3000";
 
@@ -34,12 +36,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tvData = findViewById(R.id.textView);
-        Button btn = findViewById(R.id.httpTest);
-        btn.setOnClickListener(new View.OnClickListener(){
+        tvServerIP = findViewById(R.id.tvServerip);
+        etServerIP = findViewById(R.id.etServerip);
+        etID = findViewById(R.id.etId);
+        etPW = findViewById(R.id.etPw);
+        etMsg = findViewById(R.id.etMsg);
+
+        etServerIP.setText(m_ip);
+
+        Button btnConnect = findViewById(R.id.btnConnect);
+        btnConnect.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Log.d("KSJ", "Button Clicked!");
+                Log.d("KSJ", "ID : " + etID.getText().toString());
+                Log.d("KSJ", "PW : " + etPW.getText().toString());
                 new JSONTask().execute("http://" + m_ip + ":" + m_port + "/post");
             }
         });
@@ -109,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            tvData.setText(result);
+            etMsg.setText(result);
         }
     }
 }
