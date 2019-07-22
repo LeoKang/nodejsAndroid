@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     String m_ip = "192.168.10.141";
     String m_port = "3000";
     String strId, strPw;
+    boolean task_flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public class JSONTask extends AsyncTask<String, String, String> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
         @Override
         protected String doInBackground(String... urls) {
             try{
@@ -121,12 +127,16 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            task_flag = true;
             return null;
         }
 
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            etMsg.setText(result);
+
+            if(!task_flag || isCancelled()) {
+                etMsg.setText(result);
+            }
         }
     }
 }
