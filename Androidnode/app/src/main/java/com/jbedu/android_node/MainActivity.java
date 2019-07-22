@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     String m_ip = "192.168.10.141";
     String m_port = "3000";
     String strId, strPw;
-    boolean task_flag = false;
+    boolean flag_DBresult = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            etMsg.setText("Loading...");
         }
 
         @Override
@@ -127,14 +128,14 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            task_flag = true;
+            flag_DBresult = true;
             return null;
         }
 
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
 
-            if(!task_flag || isCancelled()) {
+            if(!flag_DBresult || isCancelled()) {
                 etMsg.setText(result);
             }
         }
