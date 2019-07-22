@@ -28,7 +28,7 @@ import java.net.URL;
 public class MainActivity extends AppCompatActivity {
     TextView tvServerIP;
     EditText etServerIP, etID, etPW, etMsg;
-    String m_ip = "192.168.0.100";
+    String m_ip = "192.168.10.141";
     String m_port = "3000";
     String strId, strPw;
 
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject();
                 jsonObject.accumulate("id", strId);
                 jsonObject.accumulate("pw", strPw);
+                Log.d("KSJ", jsonObject.toString());
 
                 HttpURLConnection con = null;
                 BufferedReader reader = null;
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     con.setDoOutput(true);
                     con.setDoInput(true);
                     con.connect();
+                    Log.d("KSJ", con.toString());
 
                     OutputStream outStream = con.getOutputStream();
                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outStream));
@@ -91,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     InputStream stream = con.getInputStream();
                     reader = new BufferedReader(new InputStreamReader(stream));
                     StringBuffer buffer = new StringBuffer();
-                    String line = "";
+                    String line;
                     while((line = reader.readLine()) != null) {
                         buffer.append(line);
                     }
