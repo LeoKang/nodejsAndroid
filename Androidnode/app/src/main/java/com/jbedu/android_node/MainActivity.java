@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         btnConnect.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                flag_DBresult = false;
                 etMsg.setText("");
                 strId = etID.getText().toString();
                 strPw = etPW.getText().toString();
@@ -99,7 +100,8 @@ public class MainActivity extends AppCompatActivity {
 
                     InputStream stream = con.getInputStream();
                     reader = new BufferedReader(new InputStreamReader(stream));
-                    StringBuffer buffer = new StringBuffer();
+//                    StringBuffer buffer = new StringBuffer();
+                    StringBuilder buffer = new StringBuilder();
                     String line;
                     while((line = reader.readLine()) != null) {
                         buffer.append(line);
